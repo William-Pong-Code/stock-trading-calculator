@@ -144,6 +144,7 @@ label {
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .currency-symbol {
@@ -156,6 +157,7 @@ label {
 
 .number-input {
     width: 100%;
+    min-width: 0;
     padding: 14px 16px 14px 36px;
     font-size: 1.1rem;
     border: 2px solid var(--gray-300);
@@ -451,6 +453,9 @@ label {
     font-weight: 700;
     color: var(--gray-900);
     transition: all 0.3s ease;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
 }
 
 .result-value.updated {
@@ -580,6 +585,7 @@ footer {
     align-items: center;
     text-align: center;
     flex: 1;
+    min-width: 0;
 }
 
 .summary-label {
@@ -595,6 +601,10 @@ footer {
     font-weight: 700;
     color: var(--gray-900);
     font-size: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .summary-divider {
