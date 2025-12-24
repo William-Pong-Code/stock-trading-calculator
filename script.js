@@ -138,90 +138,40 @@ function validateInputs(values) {
     return isValid;
 }
 
-function restrictToNumbersAndDots(event) {
-    const input = event.target;
-    const key = event.key;
-    const currentValue = input.value;
-    const cursorPosition = input.selectionStart;
-    const selectionEnd = input.selectionEnd;
-    const hasSelection = cursorPosition !== selectionEnd;
-
-    // Navigation and Control Keys
-    if (ALLOWED_KEYS.includes(key)) return;
-
-    // Ctrl/Cmd Shortcuts
-    if ((event.ctrlKey || event.metaKey) && ['a', 'c', 'v', 'x'].includes(key)) return;
-
-    // Decimal Point
-    if (key === '.') {
-        if (currentValue.includes('.')) event.preventDefault();
-        return;
-    }
-
-    // Numbers Only
-    if (!/^[0-9]$/.test(key)) {
-        event.preventDefault();
-        return;
-    }
-
-    // Leading Zero Validation
-    let newValue;
-    if (hasSelection) {
-        newValue = currentValue.substring(0, cursorPosition) + key + currentValue.substring(selectionEnd);
-    } else {
-        newValue = currentValue.substring(0, cursorPosition) + key + currentValue.substring(cursorPosition);
-    }
-
-    const parts = newValue.split('.');
-    const integerPart = parts[0];
-
-    // Prevent "00", "01", etc. (but allow "0", "0.", "0.5")
-    if (integerPart.length > 1 && integerPart.charAt(0) === '0') {
-        event.preventDefault();
-    }
-}
-
-function validatePaste(event) {
-    event.preventDefault();
-    const pastedText = (event.clipboardData || window.clipboardData).getData('text');
-
-    // Basic format check
-    if (!REGEX_NUMERIC.test(pastedText)) return;
-
-    const input = event.target;
-    const start = input.selectionStart;
-    const end = input.selectionEnd;
-    const currentValue = input.value;
-    
-    let newValue = currentValue.substring(0, start) + pastedText + currentValue.substring(end);
-
-    // Ensure only one dot
-    if ((newValue.match(/\./g) || []).length > 1) return;
-
-    // Validate leading zeros
-    if (newValue === '' || 
-        /^[1-9][0-9]*\.?[0-9]*$/.test(newValue) || 
-        /^0\.[0-9]*$/.test(newValue) ||
-        newValue === '0') {
-        
-        input.value = newValue;
-        input.dispatchEvent(new Event('input', { bubbles: true }));
-    }
-}
-
-function validateInputValue(event) {
+function handleInput(event) {
     const input = event.target;
     let value = input.value;
+    const originalValue = value;
+    const cursorPosition = input.selectionStart;
 
-    // Clean up invalid leading zeros if they somehow got in
-    if (value.length > 1 && value.charAt(0) === '0' && value.charAt(1) !== '.') {
+    // 1. Allow only numbers and one dot
+    // Remove any character that is not a digit or dot
+    value = value.replace(/[^0-9.]/g, '');
+
+    // 2. Ensure only one dot
+    const parts = value.split('.');
+    if (parts.length > 2) {
+        value = parts[0] + '.' + parts.slice(1).join('');
+    }
+
+    // 3. Handle leading zeros
+    // If value starts with 0 and has more digits and next char is not dot, remove leading 0
+    if (value.length > 1 && value.startsWith('0') && !value.startsWith('0.')) {
         value = value.replace(/^0+/, '');
-        if (value === '' || value.charAt(0) === '.') {
+        if (value === '' || value.startsWith('.')) {
             value = '0' + value;
         }
+    }
+
+    // 4. Update input if value changed
+    if (value !== originalValue) {
         input.value = value;
-        // Restore cursor position (simplified to end for safety)
-        input.setSelectionRange(value.length, value.length);
+        
+        // Adjust cursor position
+        // If we removed characters, try to keep cursor relative to where it was
+        const lengthDiff = originalValue.length - value.length;
+        const newCursorPos = Math.max(0, cursorPosition - lengthDiff);
+        input.setSelectionRange(newCursorPos, newCursorPos);
     }
 }
 
@@ -360,19 +310,15 @@ function init() {
 
     // Input Event Listeners
     Object.entries(inputs).forEach(([key, input]) => {
-        // Real-time calculation
+        // Real-time calculation and validation
         input.addEventListener('input', (e) => {
-            validateInputValue(e);
+            handleInput(e);
             handleCalculation();
             if (key === 'maxLoss') saveMaxLoss();
         });
 
         // Validation on blur
         input.addEventListener('blur', handleCalculation);
-
-        // Input restrictions
-        input.addEventListener('keydown', restrictToNumbersAndDots);
-        input.addEventListener('paste', validatePaste);
     });
 
     // Form Submission
