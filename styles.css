@@ -142,17 +142,18 @@ label {
 
 .input-wrapper {
     position: relative;
-    display: flex;
-    align-items: center;
     width: 100%;
 }
 
 .currency-symbol {
     position: absolute;
     left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--gray-600);
     font-weight: 600;
     font-size: 1.1rem;
+    pointer-events: none;
 }
 
 .number-input {
@@ -165,6 +166,9 @@ label {
     border-radius: 8px;
     transition: all 0.3s ease;
     font-family: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+    line-height: normal;
 }
 
 .number-input:focus {
