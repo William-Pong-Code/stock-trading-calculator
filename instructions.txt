@@ -1,0 +1,49 @@
+# Stock Trading App Instructions
+
+## Overview
+Build a beautiful stock trading calculator app that helps users calculate risk management parameters for their trades.
+
+## Features Required
+
+### User Input Fields
+1. **Maximum Allowable Loss Amount** - The maximum dollar amount the user is willing to lose (saved in memory for convenience). This field should be first and have a light red background to indicate risk.
+2. **Entry Purchase Price** - The price at which the user plans to buy the stock
+3. **Stop-Loss Price** - The price at which the user will sell to limit losses
+4. **Target Price** (Optional) - The desired profit-taking price target
+
+### Calculated Outputs
+1. **Total Invested Capital** = Entry Purchase Price × Number of Shares
+2. **Potential Gain %** (if Target Price provided) = ((Target Price - Entry Price) / Entry Price) × 100
+3. **Potential Gain** (if Target Price provided) = (Target Price - Entry Price) × Number of Shares
+4. **Risk/Reward Ratio** (if Target Price provided) = (Target Price - Entry Price) / (Entry Price - Stop-Loss Price)
+5. **Stop-Loss %** = ((Entry Price - Stop-Loss Price) / Entry Price) × 100
+6. **Loss Amount** = (Entry Price - Stop-Loss Price) × Number of Shares
+
+*Note: Number of Shares is calculated as (Maximum Allowable Loss Amount / (Entry Price - Stop-Loss Price)) and displayed in the summary section.*
+
+## Design Requirements
+
+### UI/UX Guidelines
+- Clean, modern interface with intuitive layout
+- Real-time calculations as user types
+- Clear labeling of all input fields and results
+- Responsive design for mobile and desktop
+- Desktop version should utilize the full width with a two-column layout: input fields on the left half and calculated results on the right half, maximizing screen real estate
+- Use professional color scheme (blues, grays, whites)
+- Include proper validation and error handling
+- Tab navigation should skip informational tooltips and move directly between input fields
+
+### Technical Implementation
+- **Use vanilla JavaScript only** - No frameworks or libraries required
+- Input validation (positive numbers only, stop-loss < entry price)
+- Input fields should be `type="text"` with `inputmode="decimal"` to allow full control over validation and cursor position (avoid `type="number"`)
+- Input fields should only accept numbers and dots (for decimal numbers), reject all other characters
+- Prevent leading zeros except for decimal format (0.xxx is valid, but 00010 is not)
+- Format currency values appropriately
+- Round calculations to appropriate decimal places
+- Add loading states and smooth transitions
+- Include tooltips or help text for clarity
+- Event listeners for real-time input handling
+- DOM manipulation for dynamic updates
+- Save Maximum Allowable Loss Amount to localStorage for persistence across sessions
+- Reset button should prompt user with three options: "Clear" (keeps max loss amount), "Clear All" (clears everything including max loss), and "Cancel" (cancels the reset)

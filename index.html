@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Trading Calculator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📈 Stock Trading Calculator</h1>
+        </header>
+
+        <div class="calculator-card">
+            <form id="tradingForm">
+                <div class="two-column-layout">
+                    <div class="input-section">
+                        <h2>Trade Parameters</h2>
+                        
+                        <div class="form-group">
+                            <label for="maxLoss">
+                                Maximum Allowable Loss Amount
+                                <span class="tooltip" data-tooltip="The maximum dollar amount you're willing to lose">ℹ️</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <span class="currency-symbol">$</span>
+                                <input 
+                                    type="text" 
+                                    inputmode="decimal"
+                                    class="number-input"
+                                    id="maxLoss" 
+                                    placeholder="0.00"
+                                    required
+                                >
+                            </div>
+                            <span class="error-message" id="maxLossError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="entryPrice">
+                                Entry Purchase Price
+                                <span class="tooltip" data-tooltip="The price at which you plan to buy the stock">ℹ️</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <span class="currency-symbol">$</span>
+                                <input 
+                                    type="text" 
+                                    inputmode="decimal"
+                                    class="number-input"
+                                    id="entryPrice" 
+                                    placeholder="0.00"
+                                    required
+                                >
+                            </div>
+                            <span class="error-message" id="entryPriceError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="stopLoss">
+                                Stop-Loss Price
+                                <span class="tooltip" data-tooltip="The price at which you'll sell to limit losses">ℹ️</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <span class="currency-symbol">$</span>
+                                <input 
+                                    type="text" 
+                                    inputmode="decimal"
+                                    class="number-input"
+                                    id="stopLoss" 
+                                    placeholder="0.00"
+                                    required
+                                >
+                            </div>
+                            <span class="error-message" id="stopLossError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="targetPrice">
+                                Target Price <span class="optional-label">(Optional)</span>
+                                <span class="tooltip" data-tooltip="The desired profit-taking price target">ℹ️</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <span class="currency-symbol">$</span>
+                                <input 
+                                    type="text" 
+                                    inputmode="decimal"
+                                    class="number-input"
+                                    id="targetPrice" 
+                                    placeholder="0.00"
+                                >
+                            </div>
+                            <span class="error-message" id="targetPriceError"></span>
+                        </div>
+
+                        <button type="button" id="resetButton" class="reset-button">
+                            <span class="reset-icon">↻</span> Reset All Fields
+                        </button>
+                    </div>
+
+                    <div class="results-section" id="resultsSection">
+                    <h2>Calculated Results</h2>
+
+                    <div id="tradeSummary" class="trade-summary" style="display: none;">
+                        <div class="summary-item">
+                            <span class="summary-label">Entry</span>
+                            <span class="summary-value" id="summaryEntryPrice">—</span>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-item">
+                            <span class="summary-label">Shares</span>
+                            <span class="summary-value" id="summaryShares">—</span>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-item">
+                            <span class="summary-label">Stop</span>
+                            <span class="summary-value" id="summaryStopLoss">—</span>
+                        </div>
+                    </div>
+                    
+                    <div class="results-grid">
+                        <div class="result-card highlight">
+                            <div class="result-label">Total Invested Capital</div>
+                            <div class="result-value" id="totalCapital">
+                                <span class="loading">—</span>
+                            </div>
+                        </div>
+
+                        <div class="result-card success" id="potentialGainPercentageCard" style="display: none;">
+                            <div class="result-label">Potential Gain %</div>
+                            <div class="result-value" id="potentialGainPercentage">
+                                <span class="loading">—</span>
+                            </div>
+                        </div>
+
+                        <div class="result-card success" id="potentialProfitCard" style="display: none;">
+                            <div class="result-label">Potential Gain</div>
+                            <div class="result-value" id="potentialProfit">
+                                <span class="loading">—</span>
+                            </div>
+                        </div>
+
+                        <div class="result-card" id="riskRewardCard" style="display: none;">
+                            <div class="result-label">Risk/Reward Ratio</div>
+                            <div class="result-value" id="riskRewardRatio">
+                                <span class="loading">—</span>
+                            </div>
+                        </div>
+
+                        <div class="result-card loss">
+                            <div class="result-label">Stop-Loss %</div>
+                            <div class="result-value" id="stopLossPercentage">
+                                <span class="loading">—</span>
+                            </div>
+                        </div>
+
+                        <div class="result-card loss">
+                            <div class="result-label">Loss Amount</div>
+                            <div class="result-value" id="lossAmount">
+                                <span class="loading">—</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Reset Dialog -->
+        <div id="dialogOverlay" class="dialog-overlay"></div>
+        <div id="resetDialog" class="dialog">
+            <h3>Reset Calculator</h3>
+            <p>How would you like to reset the calculator?</p>
+            <div class="dialog-buttons">
+                <button id="clearBtn" class="dialog-btn clear-btn">Clear</button>
+                <button id="clearAllBtn" class="dialog-btn clear-all-btn">Clear All</button>
+                <button id="cancelBtn" class="dialog-btn cancel-btn">Cancel</button>
+            </div>
+            <p class="dialog-hint">💡 "Clear" keeps your Maximum Allowable Loss Amount</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
