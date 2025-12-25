@@ -79,11 +79,15 @@ header h1 {
 
 .input-section {
     margin-bottom: 0;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .results-section {
     position: sticky;
     top: 20px;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .input-section h2,
@@ -97,6 +101,7 @@ header h1 {
 
 .form-group {
     margin-bottom: 24px;
+    max-width: 100%;
 }
 
 label {
@@ -489,92 +494,6 @@ footer {
     opacity: 0.9;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .two-column-layout {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .results-section {
-        position: static;
-    }
-
-    .input-section {
-        margin-bottom: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .results-grid {
-        gap: 8px; /* Reduce gap for mobile */
-    }
-
-    .result-card {
-        padding: 12px 8px; /* Reduce padding to fit 3 columns */
-    }
-
-    .result-label {
-        font-size: 0.7rem; /* Smaller label text */
-        margin-bottom: 4px;
-    }
-
-    .result-value {
-        font-size: 1.1rem; /* Smaller value text */
-    }
-
-    body {
-        padding: 10px;
-    }
-
-    header h1 {
-        font-size: 2rem;
-    }
-
-    .calculator-card {
-        padding: 24px;
-    }
-
-    .result-value {
-        font-size: 1.5rem;
-    }
-
-    .tooltip:hover::after {
-        white-space: normal;
-        max-width: 200px;
-    }
-
-    .number-input {
-        font-size: 16px; /* Prevent zoom on iOS */
-        padding: 12px 12px 12px 32px;
-    }
-
-    .dialog {
-        min-width: auto;
-        width: 90%;
-        padding: 24px;
-    }
-
-    .dialog h3 {
-        font-size: 1.25rem;
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.75rem;
-    }
-
-    .calculator-card {
-        padding: 20px;
-    }
-
-    .input-section h2,
-    .results-section h2 {
-        font-size: 1.25rem;
-    }
-}
-
 /* Trade Summary Section */
 .trade-summary {
     margin-top: 0;
@@ -624,4 +543,129 @@ footer {
     background-color: var(--gray-200);
     margin: 0 20px;
     opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .two-column-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .results-section {
+        position: static;
+    }
+
+    .input-section {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .results-grid {
+        gap: 8px;
+    }
+
+    .result-card {
+        padding: 12px 8px;
+    }
+
+    .result-label {
+        font-size: 0.65rem;
+        margin-bottom: 4px;
+    }
+
+    .result-value {
+        font-size: 0.95rem;
+    }
+
+    .summary-value {
+        font-size: 0.95rem;
+    }
+
+    .summary-label {
+        font-size: 0.65rem;
+    }
+
+    .summary-divider {
+        height: 30px;
+        margin: 0 10px;
+    }
+
+    .trade-summary {
+        padding: 16px 12px;
+    }
+
+    .form-group {
+        margin-bottom: 8px;
+    }
+
+    .input-section h2,
+    .results-section h2 {
+        font-size: 1rem;
+        margin-bottom: 12px;
+        padding-bottom: 6px;
+    }
+
+    body {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    .calculator-card {
+        padding: 20px;
+    }
+
+    .tooltip:hover::after {
+        white-space: normal;
+        max-width: 200px;
+    }
+
+    .number-input {
+        font-size: 15px;
+        padding: 10px 10px 10px 28px;
+    }
+
+    label {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+    }
+
+    .reset-button {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        margin-top: 12px;
+    }
+
+    .reset-icon {
+        font-size: 1rem;
+    }
+
+    .dialog {
+        min-width: auto;
+        width: 90%;
+        padding: 24px;
+    }
+
+    .dialog h3 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.75rem;
+    }
+
+    .calculator-card {
+        padding: 20px;
+    }
+
+    .input-section h2,
+    .results-section h2 {
+        font-size: 1.25rem;
+    }
 }
