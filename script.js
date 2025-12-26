@@ -5,6 +5,7 @@
 
 // --- Constants ---
 const MAX_LOSS_STORAGE_KEY = 'stockTradingCalc_maxLoss';
+const THEME_STORAGE_KEY = 'stockTradingCalc_theme';
 const CLASS_ERROR = 'error';
 const CLASS_UPDATED = 'updated';
 const CLASS_LOADING = 'loading';
@@ -56,7 +57,8 @@ const ui = {
     clearAllBtn: document.getElementById('clearAllBtn'),
     clearBtn: document.getElementById('clearBtn'),
     cancelBtn: document.getElementById('cancelBtn'),
-    tradingForm: document.getElementById('tradingForm')
+    tradingForm: document.getElementById('tradingForm'),
+    themeToggle: document.getElementById('themeToggle')
 };
 
 // --- State Management ---
@@ -309,10 +311,36 @@ function clearFields(keepMaxLoss = false) {
     }
 }
 
+function initTheme() {
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    // Default is light, so only act if 'dark' is saved
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        ui.themeToggle.textContent = '☀️';
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+        ui.themeToggle.textContent = '🌙';
+    }
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    if (currentTheme === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem(THEME_STORAGE_KEY, 'light');
+        ui.themeToggle.textContent = '🌙';
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem(THEME_STORAGE_KEY, 'dark');
+        ui.themeToggle.textContent = '☀️';
+    }
+}
+
 // --- Initialization & Event Listeners ---
 
 function init() {
     loadSavedMaxLoss();
+    initTheme();
 
     // Input Event Listeners
     Object.entries(inputs).forEach(([key, input]) => {
@@ -332,6 +360,9 @@ function init() {
 
     // Reset Button
     ui.resetButton.addEventListener('click', showResetDialog);
+
+    // Theme Toggle
+    ui.themeToggle.addEventListener('click', toggleTheme);
 
     // Dialog Buttons
     ui.clearAllBtn.addEventListener('click', () => clearFields(false));

@@ -9,6 +9,7 @@ A beautiful, modern web application that helps traders calculate risk management
 - **Entry Purchase Price** - Your planned entry price
 - **Stop-Loss Price** - Your exit price to limit losses
 - **Target Price** (Optional) - Your profit-taking target
+- **Theme Toggle** - Switch between Light and Dark modes
 
 ### Calculated Results
 - **Total Invested Capital** - Your total position size
@@ -25,6 +26,7 @@ Quick view showing Entry Price, Number of Shares, and Stop-Loss Price at a glanc
 
 - Clean, modern interface with intuitive two-column layout
 - Real-time calculations as you type
+- **Dark Mode Support** - Toggle between light and dark themes for comfortable viewing in any environment
 - Professional color scheme with visual indicators:
   - Blue highlights for capital and favorable ratios
   - Green for potential profits
@@ -53,7 +55,7 @@ Simply open `index.html` in any modern web browser. No installation or build pro
 ## 🛠️ Technical Details
 
 - **Pure Vanilla JavaScript** - No frameworks or dependencies
-- **LocalStorage** - Persists Maximum Allowable Loss across sessions
+- **LocalStorage** - Persists Maximum Allowable Loss and Theme preference across sessions
 - **Input Validation** - 
   - Positive numbers only
   - Stop-loss must be less than entry price
@@ -76,7 +78,7 @@ This project is open source and available for personal and commercial use.
 
 ## 👨‍💻 Author
 
-William Pong (williampongcoding@gmail.com)
+William Pong
 
 ---
 

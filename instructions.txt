@@ -10,6 +10,7 @@ Build a beautiful stock trading calculator app that helps users calculate risk m
 2. **Entry Purchase Price** - The price at which the user plans to buy the stock
 3. **Stop-Loss Price** - The price at which the user will sell to limit losses
 4. **Target Price** (Optional) - The desired profit-taking price target
+5. **Theme Toggle** - A button to switch between Light Mode (default) and Dark Mode.
 
 ### Calculated Outputs
 1. **Total Invested Capital** = Entry Purchase Price × Number of Shares
@@ -30,6 +31,7 @@ Build a beautiful stock trading calculator app that helps users calculate risk m
 - Responsive design for mobile and desktop
 - Desktop version should utilize the full width with a two-column layout: input fields on the left half and calculated results on the right half, maximizing screen real estate
 - Use professional color scheme (blues, grays, whites)
+- Support both Light Mode and Dark Mode with a toggle button
 - Include proper validation and error handling
 - Tab navigation should skip informational tooltips and move directly between input fields
 
@@ -46,4 +48,5 @@ Build a beautiful stock trading calculator app that helps users calculate risk m
 - Event listeners for real-time input handling
 - DOM manipulation for dynamic updates
 - Save Maximum Allowable Loss Amount to localStorage for persistence across sessions
+- Save Theme preference (Light/Dark) to localStorage for persistence across sessions
 - Reset button should prompt user with three options: "Clear" (keeps max loss amount), "Clear All" (clears everything including max loss), and "Cancel" (cancels the reset)
