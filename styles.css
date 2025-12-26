@@ -201,10 +201,6 @@ label {
     margin: 0;
 }
 
-.number-input {
-    -moz-appearance: textfield;
-}
-
 #maxLoss {
     background-color: #fee2e2; /* Light red to indicate loss/risk */
 }
@@ -562,6 +558,9 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .two-column-layout {
+        gap: 20px;
+    }
     .results-grid {
         gap: 8px;
     }
@@ -597,7 +596,7 @@ footer {
     }
 
     .form-group {
-        margin-bottom: 8px;
+        margin-bottom: 0;
     }
 
     .input-section h2,
@@ -653,11 +652,14 @@ footer {
     .dialog h3 {
         font-size: 1.25rem;
     }
+    .error-message {
+        margin-top: 0;
+    }
 }
 
 @media (max-width: 480px) {
     header h1 {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 
     .calculator-card {
@@ -667,5 +669,9 @@ footer {
     .input-section h2,
     .results-section h2 {
         font-size: 1.25rem;
+    }
+
+    .result-label, .result-value {
+        font-size: 0.7rem;
     }
 }

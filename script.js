@@ -300,7 +300,13 @@ function clearFields(keepMaxLoss = false) {
     clearErrors();
     resetResults();
     hideResetDialog();
-    inputs.entryPrice.focus();
+    
+    // Focus on maxLoss if cleared, otherwise focus on entryPrice
+    if (!keepMaxLoss) {
+        inputs.maxLoss.focus();
+    } else {
+        inputs.entryPrice.focus();
+    }
 }
 
 // --- Initialization & Event Listeners ---
