@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Stock Trade App</string>
+    <string name="title_activity_main">Stock Trade App</string>
+    <string name="package_name">com.stocktrade.app</string>
+    <string name="custom_url_scheme">com.stocktrade.app</string>
+</resources>

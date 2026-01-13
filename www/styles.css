@@ -72,6 +72,7 @@ header {
     align-items: center;
     text-align: center;
     margin-bottom: 40px;
+    padding-top: env(safe-area-inset-top);
     color: var(--white);
 }
 

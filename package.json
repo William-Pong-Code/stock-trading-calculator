@@ -1,0 +1,22 @@
+{
+  "name": "stock-trade-app",
+  "version": "1.0.0",
+  "description": "A beautiful, modern web application that helps traders calculate risk management parameters for their stock trades. Built with vanilla JavaScript, HTML, and CSS.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^7.0.0"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.4",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/ios": "^7.0.0",
+    "@capacitor/status-bar": "^7.0.4"
+  }
+}

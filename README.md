@@ -1,6 +1,6 @@
 # 📈 Stock Trading Calculator
 
-A beautiful, modern web application that helps traders calculate risk management parameters for their stock trades. Built with vanilla JavaScript, HTML, and CSS.
+A beautiful, modern cross-platform application that helps traders calculate risk management parameters for their stock trades. Available as both a web app and native Android mobile app. Built with vanilla JavaScript, HTML, CSS, and Capacitor.
 
 ## ✨ Features
 
@@ -37,7 +37,27 @@ Quick view showing Entry Price, Number of Shares, and Stop-Loss Price at a glanc
 
 ## 🚀 Getting Started
 
+### Web App
 Simply open `index.html` in any modern web browser. No installation or build process required!
+
+### Mobile App (Android)
+1. **Development**: Open the project in Android Studio:
+   ```bash
+   npx cap open android
+   ```
+
+2. **Build APK for Production**:
+   ```bash
+   npx cap sync android
+   cd android
+   .\gradlew assembleRelease
+   ```
+   Or use Android Studio: **Build** → **Generate Signed Bundle / APK**
+
+3. **Install Custom Icon**: Icon files are in `resources/icon.png`. Regenerate all sizes:
+   ```bash
+   npx capacitor-assets generate
+   ```
 
 ## 💡 How to Use
 
@@ -54,7 +74,8 @@ Simply open `index.html` in any modern web browser. No installation or build pro
 
 ## 🛠️ Technical Details
 
-- **Pure Vanilla JavaScript** - No frameworks or dependencies
+- **Pure Vanilla JavaScript** - No frameworks or dependencies for core functionality
+- **Capacitor 7** - Cross-platform mobile app wrapper
 - **LocalStorage** - Persists Maximum Allowable Loss and Theme preference across sessions
 - **Input Validation** - 
   - Positive numbers only
@@ -62,15 +83,40 @@ Simply open `index.html` in any modern web browser. No installation or build pro
   - Target price must be greater than entry price
   - No leading zeros (except 0.xxx format)
 - **Smart Calculations** - Rounds shares down to whole numbers
-- **Responsive Grid** - 3-column layout that adapts to screen size
+- **Responsive Design** - 
+  - Desktop: 2-column layout with inputs on left, results on right
+  - Mobile: Safe area support for notched screens
+  - 3-column results grid that adapts to screen size
+- **Mobile Optimizations**:
+  - Safe area inset support for status bar
+  - `viewport-fit=cover` for fullscreen experience
 
-## 📱 Browser Compatibility
+## 📱 Platform Support
 
-Works on all modern browsers:
+### Web Browsers
 - Chrome/Edge (recommended)
 - Firefox
 - Safari
 - Opera
+
+### Mobile
+- Android (via Capacitor)
+- iOS (add platform with: `npx cap add ios`)
+
+## 📦 Project Structure
+
+```
+Stock Trade App/
+├── www/                    # Web app source (synced to mobile)
+│   ├── index.html
+│   ├── script.js
+│   └── styles.css
+├── android/                # Android app platform
+├── resources/              # App icons and assets
+│   └── icon.png           # 1024x1024 app icon
+├── capacitor.config.json   # Capacitor configuration
+└── package.json           # Node dependencies
+```
 
 ## 📄 License
 

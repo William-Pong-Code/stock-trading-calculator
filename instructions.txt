@@ -1,7 +1,7 @@
 # Stock Trading App Instructions
 
 ## Overview
-Build a beautiful stock trading calculator app that helps users calculate risk management parameters for their trades.
+A beautiful stock trading calculator app that helps users calculate risk management parameters for their trades. Available as both a web app and native Android mobile app using Capacitor.
 
 ## Features Required
 
@@ -36,7 +36,8 @@ Build a beautiful stock trading calculator app that helps users calculate risk m
 - Tab navigation should skip informational tooltips and move directly between input fields
 
 ### Technical Implementation
-- **Use vanilla JavaScript only** - No frameworks or libraries required
+- **Use vanilla JavaScript only** - No frameworks or libraries required for core functionality
+- **Capacitor 7** - For mobile app wrapper (Android/iOS)
 - Input validation (positive numbers only, stop-loss < entry price)
 - Input fields should be `type="text"` with `inputmode="decimal"` to allow full control over validation and cursor position (avoid `type="number"`)
 - Input fields should only accept numbers and dots (for decimal numbers), reject all other characters
@@ -50,3 +51,25 @@ Build a beautiful stock trading calculator app that helps users calculate risk m
 - Save Maximum Allowable Loss Amount to localStorage for persistence across sessions
 - Save Theme preference (Light/Dark) to localStorage for persistence across sessions
 - Reset button should prompt user with three options: "Clear" (keeps max loss amount), "Clear All" (clears everything including max loss), and "Cancel" (cancels the reset)
+
+## Mobile App Deployment
+
+### Setup
+1. Install dependencies: `npm install`
+2. Ensure Node.js v20+ is installed
+3. Sync web code to mobile: `npx cap sync android`
+
+### Building Android APK
+1. **Development**: `npx cap open android` (opens Android Studio)
+2. **Production**: `cd android && .\gradlew assembleRelease`
+3. APK location: `android\app\release\app-release.apk`
+
+### Custom App Icon
+1. Replace `resources/icon.png` with 1024x1024px image
+2. Run: `npx capacitor-assets generate`
+3. Sync: `npx cap sync android`
+
+### Mobile Optimizations
+- Safe area insets for notched screens
+- `viewport-fit=cover` for fullscreen layout
+- Mobile-responsive design with proper padding
