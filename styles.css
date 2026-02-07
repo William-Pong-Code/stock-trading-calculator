@@ -409,7 +409,7 @@ label {
 
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
     margin-bottom: 24px;
 }
@@ -424,7 +424,7 @@ label {
 .result-card {
     background: var(--white);
     border-radius: 12px;
-    padding: 24px;
+    padding: 16px;
     margin-bottom: 0;
     border: 1px solid var(--gray-200);
     box-shadow: var(--shadow-sm);
@@ -492,13 +492,13 @@ label {
 }
 
 .result-value {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--gray-900);
     transition: all 0.3s ease;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    hyphens: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .result-value.updated {
